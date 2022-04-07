@@ -15,6 +15,14 @@ public class Dagma {
 		menu();
 
 	}
+	/**
+	 * <pre>
+	 * <strong>Descripción del metodo </strong> El metodo init permite inicializar el Scanner y la controladora.
+	 * 
+	 * <strong>Inputs:</strong>  <strong>
+	 * Outputs:</strong> No aplica
+	 * </pre>
+	 */
 
 	public static void init() {
 		lector = new Scanner(System.in);
@@ -22,6 +30,15 @@ public class Dagma {
 		System.out.println("Welcome to the wetland administration");
 
 	}
+
+	/**
+	 * <pre>
+	 * <strong>Descripción del metodo </strong> El metodo menu permite mostrar las opciones de administracion del dagma para el usuario 
+	 * 
+	 * <strong>Inputs:</strong> No aplica <strong>
+	 * Outputs:</strong> No aplica
+	 * </pre>
+	 */
 
 	public static void menu() {
 		boolean stopflag = false;
@@ -45,7 +62,9 @@ public class Dagma {
 
 			case 1:
 				System.out.println("What is the name of the wetland");
-				String wetlandName = lector.next();
+				lector.nextLine();
+				String wetlandName = lector.nextLine();
+				
 
 				System.out.println("Where is the zone location of wetland\n1. Rural\n2. Urban");
 				int zoneLocation = lector.nextInt();
@@ -59,7 +78,13 @@ public class Dagma {
 				System.out.println("the wetland is a protected area.Yes or No");
 				String protection = lector.next();
 
-				if (controller.registerWetLand(wetlandName, size, type, zoneLocation, protection)) {
+				System.out.println("What is the percentage of environmental management plan");
+				double myPlan = lector.nextDouble();
+
+				System.out.println("Type the url of the photo of wetland");
+				String url = lector.next();
+
+				if (controller.registerWetLand(wetlandName, size, type, zoneLocation, protection,myPlan,url)) {
 					System.out.println("The wetland " + wetlandName + " was successfully registered");
 				} else {
 					System.out.println("The wetland " + wetlandName + " couldn't be registered");

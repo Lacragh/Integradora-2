@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"ui","c":"Dagma","l":"answerMenu"},{"p":"ui","c":"Dagma","l":"controller"},{"p":"ui","c":"Dagma","l":"Dagma()","url":"%3Cinit%3E()"},{"p":"ui","c":"Dagma","l":"init()"},{"p":"ui","c":"Dagma","l":"lector"},{"p":"ui","c":"Dagma","l":"main(String[])","url":"main(java.lang.String[])"},{"p":"ui","c":"Dagma","l":"menu()"}]
