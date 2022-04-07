@@ -1,30 +1,26 @@
 package model;
 
 import model.*;
+
 public class WetLandController {
 
+	private WetLand[] wetLands;
 
-private WetLand[] wetLands;
+	public WetLandController() {
 
+		wetLands = new WetLand[80];
+	}
 
-
-
-    public WetLandController(){
-
-        wetLands = new WetLand[80];
-    }
-
-   
-    public boolean registerWetLand(String name,String size, int type, int zoneLocation,String protectedArea) {
+	public boolean registerWetLand(String name, String size, int type, int zoneLocation, String protectedArea) {
 
 		boolean stopFlag = false;
 
-		WetLand myWetLand = new WetLand(name, size, type,zoneLocation,protectedArea);
+		WetLand myWetLand = new WetLand(name, size, type, zoneLocation, protectedArea);
 
 		for (int i = 0; i < wetLands.length && !stopFlag; i++) {
 
 			if (wetLands[i] == null) {
-                myWetLand.setId((i + 1) + "");
+				myWetLand.setId((i + 1) + "");
 				wetLands[i] = myWetLand;
 				stopFlag = true;
 
@@ -35,7 +31,8 @@ private WetLand[] wetLands;
 		return stopFlag;
 
 	}
-    public boolean registerSpecie(String wetlandID, String name, String scienceName, String migratory, int type){
+
+	public boolean registerSpecie(String wetlandID, String name, String scienceName, String migratory, int type) {
 
 		boolean stopFlag = false;
 
@@ -57,14 +54,15 @@ private WetLand[] wetLands;
 
 	}
 
-	public boolean registerEvent(String wetlandID,int type,String organizer, double price, String description,int day,int month,int year){
+	public boolean registerEvent(String wetlandID, int type, String organizer, double price, String description,
+			int day, int month, int year) {
 		boolean stopFlag = false;
 
 		for (int i = 0; i < wetLands.length && !stopFlag; i++) {
 
 			if (wetLands[i] != null) {
 
-				if ((i + 1 + "").equals(wetlandID)){
+				if ((i + 1 + "").equals(wetlandID)) {
 					stopFlag = wetLands[i].addEvents(type, organizer, price, description, day, month, year);
 				}
 			}
@@ -73,7 +71,7 @@ private WetLand[] wetLands;
 		return stopFlag;
 	}
 
-    public String showWetLandList() {
+	public String showWetLandList() {
 
 		String msg = "";
 
@@ -88,7 +86,6 @@ private WetLand[] wetLands;
 		return msg;
 
 	}
-
 
 	public String showWetlands() {
 
@@ -106,39 +103,40 @@ private WetLand[] wetLands;
 
 	}
 
-	public String showSpecies(String name){
+	public String showSpecies(String name) {
 		String msg = "";
-		
-		for (int i = 0; i < wetLands.length; i++){
-			if(wetLands[i]!=null){
-				if(wetLands[i].nameWetland(name).equals("")){
-				msg += "There are no wetlands with this species";
-				}else{
-				msg += "\nThe Wetland: "+wetLands[i].nameWetland(name)+" Have the Specie "+name;
+
+		for (int i = 0; i < wetLands.length; i++) {
+			if (wetLands[i] != null) {
+				if (wetLands[i].nameWetland(name).equals("")) {
+					msg += "There are no wetlands with this species";
+				} else {
+					msg += "\nThe Wetland: " + wetLands[i].nameWetland(name) + " Have the Specie " + name;
 				}
 			}
-			
+
 		}
 		return msg;
 	}
 
-	public String showMaintenance(int year){
+	public String showMaintenance(int year) {
 		String msg = "";
 
-		for(int i = 0; i < wetLands.length; i++){
-			if (wetLands[i]!=null){
-				msg += "\nWetland name "+wetLands[i].getName()+"\nQuantity of Maintenance in the year "+year+" are: "+wetLands[i].wetlandMaintenance(year);
+		for (int i = 0; i < wetLands.length; i++) {
+			if (wetLands[i] != null) {
+				msg += "\nWetland name " + wetLands[i].getName() + "\nQuantity of Maintenance in the year " + year
+						+ " are: " + wetLands[i].wetlandMaintenance(year);
 			}
 		}
 		return msg;
 	}
 
-	public String showWetlandMaxFauna(){
+	public String showWetlandMaxFauna() {
 		String msg = "";
 		int max = 0;
-		for (int i = 0; i < wetLands.length; i++){
-			if (wetLands[i]!=null){
-				if(wetLands[i].wetlandMaxFauna()>max){
+		for (int i = 0; i < wetLands.length; i++) {
+			if (wetLands[i] != null) {
+				if (wetLands[i].wetlandMaxFauna() > max) {
 					max = wetLands[i].wetlandMaxFauna();
 					msg = wetLands[i].getName();
 				}
@@ -147,13 +145,13 @@ private WetLand[] wetLands;
 		return msg;
 	}
 
-	public String showWetlandLeastFlora(){
+	public String showWetlandLeastFlora() {
 		String msg = "";
 		int min = 100;
 
-		for (int i= 0; i < wetLands.length; i++){
-			if (wetLands[i]!=null){
-				if (wetLands[i].wetlandLeastFlora()<min){
+		for (int i = 0; i < wetLands.length; i++) {
+			if (wetLands[i] != null) {
+				if (wetLands[i].wetlandLeastFlora() < min) {
 					min = wetLands[i].wetlandLeastFlora();
 					msg = wetLands[i].getName();
 				}
@@ -162,9 +160,9 @@ private WetLand[] wetLands;
 		return msg;
 	}
 
-	public void sumPerType(){
-		for (int i = 0; i < wetLands.length; i++){
-			if (wetLands[i]!=null){
+	public void sumPerType() {
+		for (int i = 0; i < wetLands.length; i++) {
+			if (wetLands[i] != null) {
 				wetLands[i].setFloraTerrestrial(wetLands[i].sumWetlandTerrestrialFlora());
 				wetLands[i].setFloraAquatic(wetLands[i].sumWetLandFloraAquatic());
 				wetLands[i].setFaunaMammal(wetLands[i].sumWetLandFaunaMammal());
@@ -172,31 +170,18 @@ private WetLand[] wetLands;
 				wetLands[i].setFaunaAquatic(wetLands[i].sumWetLandFaunaAquatic());
 			}
 		}
-		
+
 	}
 
-
-	public String showWetLandsInfo(){
+	public String showWetLandsInfo() {
 		String msg = "";
 		sumPerType();
-			for (int i = 0; i < wetLands.length; i++){
-				if (wetLands[i]!=null){
-					msg += wetLands[i].toString();
-				}
+		for (int i = 0; i < wetLands.length; i++) {
+			if (wetLands[i] != null) {
+				msg += wetLands[i].toString();
 			}
-			return msg;
+		}
+		return msg;
 	}
 
-
 }
-		
-		
-	
-			
-	
-
-
-
-
-
-		
